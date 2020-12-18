@@ -61,7 +61,7 @@ int main()
 
     return 0;
 }
-new one:
+/*新版*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
