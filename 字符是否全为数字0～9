@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int checkNumber(char *p);
+void getNumberString(char *p1,char *p2);
+int main()
+{
+    int k=0;
+    char s1[80],s2[80];
+    while(k==0)
+    {
+      printf("请输入一个全为数字的字符串:\n");
+      scanf("%s",s1);
+      k=checkNumber(s1);
+    }
+    getNumberString(s1,s2);
+    printf("你输入的正确的数字串为：%s\n",s2);
+
+
+}
+int checkNumber(char *p)
+{
+    while(*p!='\0')
+    {
+        if(*p>'9'||*p<'0')
+            return 0;
+            p++;
+    }
+    return 1;
+}
+void getNumberString(char s1[],char s2[])
+{
+    int i=0,j=0;
+    while(s1[i]!='\0')
+    {
+        if(s1[i]>'9'||s1[i]<'0')
+            i++;
+        else
+            s2[j++]=s1[i++];
+    }
+    s2[j]=='\0';
+}
