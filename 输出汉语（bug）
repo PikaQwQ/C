@@ -1,0 +1,19 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+char x[7][5]={"","","十","百","千","万"};
+char date[10][5]={"零","一","二","三","四","五","六","七","八","九"};
+int main()
+{
+    int i;
+    char s[80];
+    scanf("%s",s);
+    for(i=0;i<strlen(s);i++)
+    {
+        if(s[i]=='0'&&i!=strlen(s)-1)
+            printf("零");
+        else if(s[i]!='0')
+            printf("%s%s",date[s[i]-'0'],x[strlen(s)-i]);
+    }
+
+}
