@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Person{                                   //定义结构体
+    int num;
+    struct Person *next;
+};
+int main()
+{
+    struct Person per[13];                              //定义结构体变量数组
+    int i;
+    for (i=0; i<13; i++)
+        {                        //此循环给13个人标注序号，1对应第一个人，以此类推，同时实现循环链表，当到达链表最后一个时，地址指向开头。
+        per[i].num=i+1;
+        if (i==12) per[i].next=&per[0];
+        else per[i].next=&per[i+1];
+    }
+    struct Person *p;
+    printf("出圈成员及顺序：");
+    for (p=per, i=0; p->next!=p; p=p->next)
+    {    //循环报号，当每次报到第2个人时，next指针直接跳过下一个变量，指向下下个变量，当next指针指向自己时结束循环。
+        i++;
+        if (i%2==0){
+            printf("%3d",p->next->num);
+            p->next=p->next->next;
+
+            i=0;
+        }
+    }
+    printf("\n最后的成员是：" );
+    printf("%3d", p->num);       //输出结果
+    system("pause");
+    return 0;
+}
