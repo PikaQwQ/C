@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct date_rec
+  {
+    char name[80];
+    int s1 ;
+    int s2 ;
+    char b1;
+    char b2;
+    char b3;
+    int money;
+  };
+  int Find(struct date_rec a[],int n);
+  int main()
+  {
+      struct date_rec a[10];
+      int i,n;
+      scanf("%d",&n);
+      for(i=0;i<n;i++)
+      {
+          scanf("%s %d %d %c %c %c",a[i].name,&a[i].s1,&a[i].s2,&a[i].b1,&a[i].b2,&a[i].b3);
+          a[i].money=0;
+      }
+      for(i=0;i<n;i++)
+      {
+          if(a[i].s1>80&&a[i].b3=='Y') a[i].money+=8000;
+          if(a[i].s1>85&&a[i].s2>80) a[i].money+=4000;
+          if(a[i].s1>90) a[i].money+=2000;
+          if(a[i].s1>85&&a[i].b2=='Y') a[i].money+=1000;
+          if(a[i].s2>80&&a[i].b1=='Y') a[i].money+=850;
+
+      }
+      int k=Find(a,n),sum=0;
+      printf("%s\n",a[k].name);
+      printf("%d\n",a[k].money);
+      for(i=0;i<n;i++)
+      {
+          sum=sum+a[i].money;
+      }
+      printf("%d",sum);
+  }
+  int Find(struct date_rec a[],int n)
+  {
+      int i,max=a[0].money,k=0;
+      for(i=0;i<n;i++)
+      {
+          if(max<a[i].money)
+          {
+              max=a[i].money;
+              k=i;
+          }
+      }
+      return k;
+  }
+
